@@ -39,7 +39,7 @@ class AuthorsAPIList(generics.ListCreateAPIView):
     queryset = Authors.objects.all()
     serializer_class = AuthorsSerializer
 
-class BooksAPIList(generics.ListAPIView):
+class BooksAPIList(generics.ListCreateAPIView):
     queryset = Books.objects.all()
     serializer_class = BooksSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
@@ -47,9 +47,11 @@ class BooksAPIList(generics.ListAPIView):
     search_fields = ['title', 'description', 'author', 'teg']
     ordering_fields = '__all__'
 
-class BooksAPICreate(generics.ListCreateAPIView):
-    queryset = Books.objects.all()
-    serializer_class = BooksSerializer2
+    def get_serializer_class(self):
+        if self.request.method == "POST":
+            return BooksSerializer2
+        elif self.request.method == "GET":
+            return BooksSerializer
 
 class BooksAPIDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Books.objects.all()

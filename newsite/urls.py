@@ -29,7 +29,6 @@ urlpatterns = [
     path('api/v1/authorslist/', AuthorsAPIList.as_view()),
     path('api/v1/bookslist/', BooksAPIList.as_view()),
     path('api/v1/booksdetail/<int:pk>/', BooksAPIDetail.as_view()),
-    path('api/v1/bookscreate/', BooksAPICreate.as_view()),
 ]
 
 if settings.DEBUG:
