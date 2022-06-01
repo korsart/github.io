@@ -7,34 +7,6 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 
-
-def index(request, id):
-    if(request.GET):
-        print(request.GET)
-    return HttpResponse(f'<h2>Index</h2><p>{id}</p>')
-
-def categories(request):
-    if(request.GET):
-        print(request.GET)
-    return HttpResponse('Categories')
-
-def main(request):
-    if(request.GET):
-        print(request.GET)
-    return HttpResponse('<h1>Main</h1>') 
-
-
-def archive (request, year):
-    if(request.GET):
-        print(request.GET)
-    if int(year) > 2022:
-        return redirect('home')
-    return HttpResponse(f'<h1>Архив по годам</h1><p>{year}</p>')
-
-def pageNotFound(request, exception):
-    return HttpResponseNotFound('<h1>ОШИБКА ЧЕТЫРЕСТАЧЕТЫРЕ ЁПТА</h1><h2>НА ЭТОЙ СТРАНИЦЕ НИХУЯ НЕТ</h2><h3>Постарайтесь больше так не проёбываться</h3>')
-
-
 class AuthorsAPIList(generics.ListCreateAPIView):
     queryset = Authors.objects.all()
     serializer_class = AuthorsSerializer
