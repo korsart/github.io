@@ -25,13 +25,8 @@ from django.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('newapp.urls')),
-    path('api/v1/authorslist/', AuthorsAPIList.as_view()),
-    path('api/v1/bookslist/', BooksAPIList.as_view()),
-    path('api/v1/booksdetail/<int:pk>/', BooksAPIDetail.as_view()),
+    path('api/v1/', include('newapp.urls')),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-handler404 = pageNotFound 
